@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:6
+FROM mhart/alpine-node:8
 
 MAINTAINER kirigayakazushin,<kirigaya@mkacg.com>
 RUN adduser -D -G users docker
@@ -10,6 +10,6 @@ VOLUME /Hexo
 WORKDIR /Hexo
 RUN \
     npm install hexo-cli -g \
-    && npm install -g cnpm
+    && npm install cnpm -g
 USER docker
 CMD ['/bin/bash']
