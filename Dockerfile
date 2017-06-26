@@ -1,15 +1,13 @@
-FROM mhart/alpine-node:8
+FROM base/archlinux
 
 MAINTAINER kirigayakazushin,<kirigaya@mkacg.com>
-RUN adduser -D -G users docker
-RUN \
-    apk --update --no-progress add git openssh
-RUN mkdir /Hexo \
-    && chown -R docker /Hexo
+RUN useradd -m -g users docker -G wheel
+RUN echo 'Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+RUN pacman -Sy nodejs npm --noconfirm
+RUN npm install hexo-cli -g
+RUN mkdir /Hexo
+RUN chown -R docker /Hexo
 VOLUME /Hexo
 WORKDIR /Hexo
-RUN \
-    npm install hexo-cli -g \
-    && npm install cnpm -g
 USER docker
 CMD ['/bin/bash']
