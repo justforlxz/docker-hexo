@@ -5,7 +5,7 @@
 
 pull镜像以后，写入alias，将docker-hexo当做本地工具。
 
-    alias hexo='docker run -it --rm -p 4000:4000 -v $PWD:/Hexo -v $HOME/.gitconfig:/root/.gitconfig -v $HOME/.ssh:/root/.ssh kirigayakazushin/docker-hexo hexo'
+    alias hexo='docker run -it --rm -p 4000:4000 -v $PWD:/Hexo -v $HOME/.gitconfig:/home/docker/.gitconfig -v $HOME/.ssh:/home/docker/.ssh kirigayakazushin/docker-hexo hexo'
 
     alias npm='docker run -it --rm -v $PWD:/Hexo kirigayakazushin/docker-hexo npm'
 
