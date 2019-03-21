@@ -1,10 +1,16 @@
-FROM base/archlinux
+FROM alpine:3.9
+MAINTAINER justforlxz,<justforlxz@gmail.com>
+RUN apk add --no-cache  \
+                nodejs  \
+                npm     \
+                openssl \
+                git     \
+                openssh \
+                gnupg
 
-MAINTAINER kirigayakazushin,<kirigaya@mkacg.com>
-RUN useradd -m -g users docker -G wheel
-RUN echo 'Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
-RUN pacman -Sy git openssh nodejs npm --noconfirm
 RUN npm install hexo-cli -g
+RUN addgroup -g 1000 docker
+RUN adduser -u 1000 -D -G docker docker
 RUN mkdir /Hexo
 RUN chown -R docker /Hexo
 VOLUME /Hexo
